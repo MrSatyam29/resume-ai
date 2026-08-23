@@ -1,0 +1,627 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #0f1117;
+  color: #f5f7fa;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  width: min(100% - 40px, 1100px);
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 48px;
+  letter-spacing: -1px;
+}
+
+.header p {
+  margin-top: 12px;
+  color: #9da4b3;
+  font-size: 17px;
+}
+
+/* =========================
+   MODE TOGGLE
+========================= */
+
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.mode-button {
+  padding: 12px 22px;
+  border: 1px solid #303642;
+  border-radius: 10px;
+  background: #181b23;
+  color: #aeb5c2;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mode-button:hover {
+  border-color: #6c63ff;
+  color: #ffffff;
+}
+
+.mode-button.active {
+  background: #6c63ff;
+  color: #ffffff;
+  border-color: #6c63ff;
+}
+
+/* =========================
+   COMMON CARDS
+========================= */
+
+.upload-card,
+.job-card {
+  background: #181b23;
+  border: 1px solid #292e39;
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 24px;
+}
+
+.upload-card h2,
+.job-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.upload-card p,
+.job-card p {
+  color: #9da4b3;
+}
+
+/* =========================
+   JOB DESCRIPTION
+========================= */
+
+.job-card textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 180px;
+  padding: 16px;
+  border: 1px solid #303642;
+  border-radius: 12px;
+  background: #101218;
+  color: #ffffff;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.job-card textarea:focus {
+  border-color: #6c63ff;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.screen-button {
+  margin-top: 18px;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 10px;
+  background: #6c63ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.screen-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.screen-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================
+   UPLOAD DROP ZONE
+========================= */
+
+.drop-zone {
+  margin-top: 20px;
+  min-height: 190px;
+  border: 2px dashed #303642;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragging {
+  border-color: #6c63ff;
+  background: #151822;
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  background: #222634;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  color: #8c85ff;
+
+  margin-bottom: 5px;
+}
+
+.drop-zone strong {
+  font-size: 16px;
+}
+
+.drop-zone span {
+  color: #9da4b3;
+  font-size: 14px;
+}
+
+.drop-zone small {
+  color: #6f7685;
+  margin-top: 5px;
+}
+
+/* =========================
+   SELECTED FILES
+========================= */
+
+.file-list {
+  margin-top: 28px;
+}
+
+.file-list h3 {
+  margin: 0 0 14px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #aeb5c2;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+
+  background: #101218;
+  border: 1px solid #292e39;
+  border-radius: 12px;
+
+  color: #e4e7ec;
+
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.file-item:hover {
+  background: #151822;
+  border-color: #3b4150;
+}
+
+.file-item span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  flex: 1;
+  min-width: 0;
+
+  font-size: 14px;
+}
+
+.remove-file {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #7f8797;
+
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.remove-file:hover {
+  background: #2a1d22;
+  color: #ff8d9b;
+}
+
+/* =========================
+   SCREENING RESULTS
+========================= */
+
+.results-section {
+  margin-top: 50px;
+}
+
+.results-section > h2 {
+  margin-bottom: 6px;
+  font-size: 30px;
+  letter-spacing: -0.5px;
+}
+
+.results-section > p {
+  margin-top: 0;
+  margin-bottom: 26px;
+  color: #9da4b3;
+}
+
+/* Result list */
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Result card */
+
+.result-card {
+  background: #181b23;
+  border: 1px solid #292e39;
+  border-radius: 18px;
+
+  padding: 24px;
+
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.result-card:hover {
+  border-color: #3a4050;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   RESULT HEADER
+========================= */
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+  border-bottom: 1px solid #292e39;
+}
+
+.result-header > div:first-child {
+  min-width: 0;
+}
+
+.candidate-position {
+  display: inline-block;
+
+  margin-bottom: 5px;
+
+  color: #8c85ff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.result-header h3 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #f1f3f7;
+
+  word-break: break-word;
+}
+
+.score {
+  min-width: 70px;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #8c85ff;
+
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =========================
+   RESULT CONTENT
+========================= */
+
+.result-content {
+  padding-top: 18px;
+}
+
+.result-content h4 {
+  margin: 18px 0 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+
+  color: #8f97a8;
+}
+
+.result-content h4:first-child {
+  margin-top: 0;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skill {
+  display: inline-block;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+}
+
+.skill.matched {
+  background: #1d3329;
+  color: #75d6a2;
+  border: 1px solid #28523e;
+}
+
+.skill.missing {
+  background: #33231f;
+  color: #e5a38d;
+  border: 1px solid #54352c;
+}
+
+/* =========================
+   EXPERIENCE
+========================= */
+
+.result-content ul {
+  margin: 0;
+  padding-left: 19px;
+
+  color: #c4c9d3;
+}
+
+.result-content li {
+  margin-bottom: 6px;
+
+  line-height: 1.45;
+}
+
+/* =========================
+   ASSESSMENT
+========================= */
+
+.assessment {
+  margin: 0;
+
+  padding: 14px 16px;
+
+  border-left: 3px solid #6c63ff;
+  border-radius: 0 8px 8px 0;
+
+  background: #13161e;
+
+  color: #cdd2dc;
+
+  line-height: 1.55;
+}
+
+/* =========================
+   STATUS / LOADING / ERRORS
+========================= */
+
+.loading-message {
+  margin-top: 12px;
+  color: #9da4b3;
+  font-size: 14px;
+}
+
+.status-message {
+  margin-top: 14px;
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  background: #151a22;
+  border: 1px solid #29313d;
+
+  color: #aeb7c5;
+
+  font-size: 14px;
+}
+
+.error-message {
+  margin-top: 14px;
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  background: #21181b;
+  border: 1px solid #493039;
+
+  color: #ff9aa8;
+
+  font-size: 14px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .app {
+    width: min(100% - 24px, 1100px);
+    padding: 35px 0;
+  }
+
+  .header h1 {
+    font-size: 38px;
+  }
+
+  .upload-card,
+  .job-card,
+  .result-card {
+    padding: 20px;
+  }
+
+  .result-header {
+    align-items: flex-start;
+  }
+
+  .result-header h3 {
+    font-size: 16px;
+  }
+
+  .score {
+    font-size: 25px;
+  }
+}
+
+/* =========================
+   Q&A
+========================= */
+
+.qa-label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #aeb5c2;
+}
+
+.qa-select {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #303642;
+  border-radius: 10px;
+
+  background: #101218;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.qa-select:focus {
+  border-color: #6c63ff;
+}
+
+.qa-select option {
+  background: #181b23;
+  color: #ffffff;
+}
+
+/* =========================
+   Q&A ANSWER
+========================= */
+
+.qa-answer {
+  margin-top: 18px;
+  color: #cdd2dc;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.qa-answer p {
+  margin: 0 0 16px;
+}
+
+.qa-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.qa-answer ul,
+.qa-answer ol {
+  margin: 10px 0 18px;
+  padding-left: 24px;
+}
+
+.qa-answer li {
+  margin-bottom: 9px;
+  line-height: 1.6;
+}
+
+.qa-answer strong {
+  color: #f1f3f7;
+  font-weight: 600;
+}
+
+.qa-answer h1,
+.qa-answer h2,
+.qa-answer h3 {
+  color: #f1f3f7;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

@@ -1,8 +1,31 @@
+# Python
 venv/
-.env
 __pycache__/
-*.pyc
+*.py[cod]
 
+# Environment / secrets
+.env
+
+# Resume data and generated vector data
 data/resumes/
 vectorstore/
 resume_registry.json
+
+# Node / React
+node_modules/
+frontend/node_modules/
+
+# React build output
+frontend/dist/
+frontend/build/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
