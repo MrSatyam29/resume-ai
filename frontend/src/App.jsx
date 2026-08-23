@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import './App.css'
 
+const API_URL =
+  import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
 function App() {
   const [mode, setMode] = useState('screening')
 
@@ -34,7 +37,7 @@ function App() {
   const loadResumes = async () => {
     try {
       const response = await fetch(
-        'http://127.0.0.1:8000/resumes'
+        `${API_URL}/resumes`
       )
 
       if (!response.ok) {
@@ -169,7 +172,7 @@ function App() {
     try {
       const response =
         await fetch(
-          'http://127.0.0.1:8000/upload',
+          `${API_URL}/upload`,
           {
             method: 'POST',
             body: formData,
@@ -257,7 +260,7 @@ function App() {
       try {
         const response =
           await fetch(
-            'http://127.0.0.1:8000/screen',
+            `${API_URL}/screen`,
             {
               method: 'POST',
               headers: {
@@ -330,7 +333,7 @@ function App() {
       try {
         const response =
           await fetch(
-            'http://127.0.0.1:8000/ask',
+            `${API_URL}/ask`,
             {
               method: 'POST',
               headers: {
